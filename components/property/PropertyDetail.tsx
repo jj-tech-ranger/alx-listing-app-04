@@ -53,7 +53,7 @@ const PropertyDetail: React.FC<{ property: PropertyProps }> = ({ property }) => 
               ))}
             </ul>
           )}
-          {activeTab === 'reviews' && <ReviewSection reviews={property.reviews} />}
+          {activeTab === 'reviews' && <ReviewSection propertyId={property.id} />}
           {activeTab === 'host' && property.host && (
             <div>
               <h3 className="text-xl font-semibold">{property.host.name}</h3>
