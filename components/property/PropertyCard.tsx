@@ -1,31 +1,61 @@
 import { PropertyProps } from "@/interfaces";
-import Image from "next/image";
+import React from "react";
 import Link from "next/link";
 
 const PropertyCard: React.FC<{ property: PropertyProps }> = ({ property }) => {
-  return (
-    <Link href={`/properties/${property.id}`}>
-      <div className="border rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-        <div className="relative h-48 w-full">
-          <Image
-            src={property.image}
-            alt={property.name}
-            layout="fill"
-            objectFit="cover"
-          />
+    return (
+        <div className="border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 bg-white flex flex-col md:flex-row h-auto md:h-52 mb-6">
+
+            <div className="relative w-full md:w-72 flex-shrink-0 h-48 md:h-full">
+                <img
+                    src={property.image}
+                    alt={property.name}
+                    className="w-full h-full object-cover"
+                />
+                <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md shadow-sm flex items-center">
+                    <span className="text-yellow-500 mr-1">★</span>
+                    <span className="font-bold text-xs text-gray-800">{property.rating}</span>
+                </div>
+            </div>
+
+            {/* Content Section - Right Side */}
+            <div className="p-5 flex flex-col flex-grow justify-between">
+                <div>
+                    <div className="flex justify-between items-start mb-2">
+                        <h3 className="text-xl font-bold text-gray-900 line-clamp-1">
+                            {property.name}
+                        </h3>
+                        <div className="text-right flex-shrink-0 ml-2">
+              <span className="text-lg font-bold text-gray-900 block">
+                ${property.price}
+              </span>
+                            <span className="text-gray-500 text-xs">/ night</span>
+                        </div>
+                    </div>
+
+                    <p className="text-gray-500 text-sm flex items-center mb-3">
+                        <svg className="w-4 h-4 mr-1.5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        {property.address.city}, {property.address.country}
+                    </p>
+
+                    <p className="text-gray-600 text-sm line-clamp-2">
+                        {property.description}
+                    </p>
+                </div>
+
+                <div className="flex justify-end pt-3 mt-auto">
+                    <Link href={`/property/${property.id}`}>
+                        <button className="bg-blue-600 text-white text-sm font-medium px-6 py-2.5 rounded-lg hover:bg-blue-700 transition-colors shadow-sm">
+                            View Details
+                        </button>
+                    </Link>
+                </div>
+            </div>
         </div>
-        <div className="p-4">
-          <h3 className="text-xl font-bold">{property.name}</h3>
-          <p className="text-gray-600">{property.address.city}, {property.address.country}</p>
-          <p className="text-green-600 font-semibold mt-2">${property.price} / night</p>
-          <div className="flex items-center mt-1">
-            <span className="text-yellow-500">★</span>
-            <span className="ml-1 text-sm text-gray-700">{property.rating}</span>
-          </div>
-        </div>
-      </div>
-    </Link>
-  );
+    );
 };
 
 export default PropertyCard;

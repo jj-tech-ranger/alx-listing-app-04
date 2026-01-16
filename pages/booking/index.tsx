@@ -58,7 +58,7 @@ export default function BookingPage() {
     setSuccess(false);
 
     try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/bookings`, formData);
+      const response = await axios.post(`/api/bookings`, formData);
       setSuccess(true);
       // Reset form
       setFormData({
