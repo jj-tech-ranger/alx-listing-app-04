@@ -6,7 +6,7 @@ The **ALX Listing App** is an Airbnb-style project designed to help learners und
 This milestone focuses on deploying the app to a cloud hosting platform for public accessibility.
 
 ## 🌐 Live Demo
-The app is deployed and accessible at: [https://alx-listing-app-didas-projects-46c54c54.vercel.app](https://alx-listing-app-didas-projects-46c54c54.vercel.app)
+The app is deployed and accessible at:
 
 ---
 
@@ -102,8 +102,8 @@ A Button styled with Tailwind CSS
 
 👨‍💻 Author
 
-Waqo Dida Godana
-GitHub: Waqo-Dida-Godana
+JJ
+GitHub: https://github.com/jj-tech-ranger
 
 🏁 Conclusion
 
