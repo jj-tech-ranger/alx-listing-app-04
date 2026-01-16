@@ -2,86 +2,60 @@ import { PropertyProps } from "@/interfaces";
 import React from "react";
 import Link from "next/link";
 
-const PropertyCard: React.FC<{ property: PropertyProps }> = ({ property }) => {
-  return (
-    <div className="border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 bg-white flex flex-col md:flex-row h-auto md:h-60 group">
-      <div className="relative w-full md:w-80 flex-shrink-0 h-56 md:h-full overflow-hidden">
-        <img
-          src={property.image}
-          alt={property.name}
-          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
-        />
-        <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm px-2 py-1 rounded-md shadow-sm flex items-center">
-          <span className="text-yellow-500 mr-1">★</span>
-          <span className="font-bold text-xs text-gray-800">
-            {property.rating}
-          </span>
-        </div>
-      </div>
+interface PropertyCardProps {
+    property: PropertyProps;
+}
 
-      <div className="p-5 flex flex-col flex-grow justify-between">
-        <div>
-          <div className="flex justify-between items-start mb-2">
-            <h3 className="text-xl font-bold text-gray-900 line-clamp-1 group-hover:text-blue-600 transition-colors">
-              {property.name}
-            </h3>
-            <div className="text-right flex-shrink-0 ml-4">
-              <span className="text-xl font-bold text-gray-900 block">
-                ${property.price}
-              </span>
-              <span className="text-gray-500 text-xs">/ night</span>
+const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
+    return (
+        <Link href={`/property/${property.id}`} className="group cursor-pointer">
+            <div className="flex flex-col gap-2 w-full">
+                {/* Image Container */}
+                <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-gray-200">
+                    <img
+                        src={property.image}
+                        alt={property.name}
+                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                    {/* Rating Badge (Floating) */}
+                    <div className="absolute right-3 top-3 flex items-center gap-1 rounded-md bg-white/90 px-2 py-1 shadow-sm backdrop-blur-sm">
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            className="h-3 w-3 text-black"
+                        >
+                            <path
+                                fillRule="evenodd"
+                                d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                                clipRule="evenodd"
+                            />
+                        </svg>
+                        <span className="text-xs font-semibold text-black">
+              {property.rating}
+            </span>
+                    </div>
+                </div>
+
+                {/* Content */}
+                <div className="mt-1">
+                    <div className="flex justify-between items-start">
+                        <h3 className="font-semibold text-gray-900 truncate pr-2">
+                            {property.address.city}, {property.address.country}
+                        </h3>
+                    </div>
+                    <p className="text-gray-500 text-sm line-clamp-1">
+                        {property.name}
+                    </p>
+                    <div className="mt-1 flex items-baseline gap-1">
+            <span className="font-semibold text-gray-900">
+              ${property.price}
+            </span>
+                        <span className="text-gray-500 text-sm">night</span>
+                    </div>
+                </div>
             </div>
-          </div>
-
-          <p className="text-gray-500 text-sm flex items-center mb-3">
-            <svg
-              className="w-4 h-4 mr-1.5 text-gray-400 flex-shrink-0"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-              ></path>
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-              ></path>
-            </svg>
-            {property.address.city}, {property.address.country}
-          </p>
-
-          <p className="text-gray-600 text-sm line-clamp-2 mb-4">
-            {property.description}
-          </p>
-
-          <div className="flex flex-wrap gap-2 mb-2">
-            {property.category.slice(0, 3).map((cat, index) => (
-              <span
-                key={index}
-                className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full font-medium"
-              >
-                {cat}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        <div className="flex justify-end pt-2">
-          <Link href={`/property/${property.id}`} className="w-full sm:w-auto">
-            <button className="w-full sm:w-auto bg-blue-600 text-white text-sm font-medium px-6 py-2.5 rounded-lg hover:bg-blue-700 active:bg-blue-800 transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-              View Details
-            </button>
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
+        </Link>
+    );
 };
 
 export default PropertyCard;
