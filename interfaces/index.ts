@@ -41,3 +41,20 @@ export interface PropertyProps {
   price: number;
   host?: Host;
 }
+
+export interface BookingProps {
+  id?: string;
+  propertyId: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  cardNumber: string;
+  expirationDate: string;
+  cvv: string;
+  billingAddress: string;
+  checkIn: string;
+  checkOut: string;
+  guests: number;
+  totalPrice: number;
+}
