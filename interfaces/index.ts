@@ -17,23 +17,27 @@ export interface Review {
   comment: string;
 }
 
+export interface Address {
+  city: string;
+  country: string;
+}
+
+export interface Host {
+  name: string;
+  avatar: string;
+  description: string;
+}
+
 export interface PropertyProps {
   id: string;
   name: string;
   rating: number;
-  address: {
-    city: string;
-    country: string;
-  };
+  address: Address;
   image: string;
   images?: string[];
   description: string;
   category: string[];
   reviews: Review[];
   price: number;
-  host?: {
-    name: string;
-    avatar: string;
-    description: string;
-  };
+  host?: Host;
 }
