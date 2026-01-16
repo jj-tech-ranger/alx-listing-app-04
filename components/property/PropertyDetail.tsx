@@ -177,7 +177,7 @@ const PropertyDetail: React.FC<{ property: PropertyProps }> = ({ property }) => 
         {/* Sidebar Booking Section */}
         <div className="lg:col-span-1">
           <div className="sticky top-24">
-            <BookingSection price={property.price} />
+            <BookingSection price={property.price} propertyId={property.id} />
           </div>
         </div>
       </div>
